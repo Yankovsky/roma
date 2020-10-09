@@ -1,0 +1,30 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>
+		Рома, не шатай лодку!
+	</title>
+	<style>
+		body {
+			background: black;
+			display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 100vh;
+		}
+	</style>
+</head>
+<body>
+<script>
+  const sadImages = ['./slonik.jpg', 'ruki.jpg', 'koteika.jpg']
+
+  const img = document.createElement('img')
+
+  const rand = Math.floor(Math.random() * sadImages.length)
+  img.src = sadImages[rand]
+  document.body.appendChild(img)
+</script>
+</body>
+</html>
