@@ -77,9 +77,18 @@
 
   const img = document.createElement('img');
 
+  let previousRand
   const setRandomImage = () => {
-    const rand = Math.floor(Math.random() * sadImagesThatMakeYouThink.length)
-    img.src = sadImagesThatMakeYouThink[rand]
+    const noRepeatImagesArray = previousRand !== undefined
+      ? [
+        ...sadImagesThatMakeYouThink.slice(0, previousRand),
+	    ...sadImagesThatMakeYouThink.slice(previousRand + 1, sadImagesThatMakeYouThink.length)
+      ]
+      : sadImagesThatMakeYouThink
+    const rand = Math.floor(Math.random() * noRepeatImagesArray.length)
+    console.log(rand)
+    img.src = noRepeatImagesArray[rand]
+    previousRand = rand >= previousRand ? rand + 1 : rand
   }
 
   setRandomImage()
