@@ -14,17 +14,89 @@
             text-align: center;
             min-height: 100vh;
 		}
+    button{
+      border: none;
+      color: white;
+      padding: 14px 28px;
+      cursor: pointer;
+      background-color: #f44336;
+    }
+    button:hover{
+      background: #da190b;
+      animation: shake 0.5s;
+      animation-iteration-count: infinite;
+    }
+    img{
+      max-height: 200px;
+    }
+    .main{
+      margin-left: auto;
+      margin-right: auto;
+      float: left;
+      max-width: 100%;
+      justify-content: center
+    }
+    .forBtn{
+      padding: 5px;
+    }
+    .roma {
+      padding: 5px;
+    }
+    .roma:hover{
+      filter: brightness(60%) contrast(200%) invert(210%) hue-rotate(140deg);
+    }
+    @keyframes shake {
+      0% { transform: translate(1px, 1px) rotate(0deg); }
+      10% { transform: translate(-1px, -2px) rotate(-1deg); }
+      20% { transform: translate(-3px, 0px) rotate(1deg); }
+      30% { transform: translate(3px, 2px) rotate(0deg); }
+      40% { transform: translate(1px, -1px) rotate(1deg); }
+      50% { transform: translate(-1px, 2px) rotate(-1deg); }
+      60% { transform: translate(-3px, 1px) rotate(0deg); }
+      70% { transform: translate(3px, 1px) rotate(-1deg); }
+      80% { transform: translate(-1px, -1px) rotate(1deg); }
+      90% { transform: translate(1px, 2px) rotate(0deg); }
+      100% { transform: translate(1px, -2px) rotate(-1deg); }
+    }
 	</style>
 </head>
 <body>
 <script>
-  const sadImages = ['./slonik.jpg', 'ruki.jpg', 'koteika.jpg', 'water.gif', 'doggo.jpg', 'Снимок%20экрана%202020-10-16%20в%2009.33.43.png', 'Снимок%20экрана%202020-10-16%20в%2009.26.14.png']
+  const sadImages = ['./slonik.jpg', 'ruki.jpg', 'koteika.jpg', 'water.gif', 'doggo.jpg', '1.jpg', '2.png', '3.png']
 
-  const img = document.createElement('img')
+  const div1 = document.createElement('div');
+  div1.className = 'main';
+  const div2 = document.createElement('div');
+  div1.className = 'forBtn';
+
+  const roma = document.createElement('img');
+  roma.className = 'roma';
+  roma.src = 'kek.png';
+
+  const img = document.createElement('img');
 
   const rand = Math.floor(Math.random() * sadImages.length)
   img.src = sadImages[rand]
-  document.body.appendChild(img)
+
+  const btn = document.createElement('button');
+  btn.addEventListener('click', function() {
+    window.location.reload();
+  }, false);
+  btn.textContent = 'Шатать';
+
+  const btnCool = document.createElement('button');
+  btnCool.addEventListener('click', function() {
+    img.src = 'good-boy.jpeg'
+  }, false);
+  btnCool.textContent = 'Рома хороший';
+
+
+  div1.appendChild(roma);
+  div1.appendChild(img);
+  div2.appendChild(btn);
+  div2.appendChild(btnCool);
+  document.body.appendChild(div1);
+  document.body.appendChild(div2);
 </script>
 </body>
 </html>
