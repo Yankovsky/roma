@@ -64,7 +64,15 @@
 </head>
 <body>
 <script>
-  const sadImages = ['./slonik.jpg', 'ruki.jpg', 'koteika.jpg', 'water.gif', 'doggo.jpg', '1.jpg', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png', '13.png']
+  
+  console.log("%cRoma, we love you! 💖 TTTeam", "color: lightcoral; font-size: x-large")
+
+  const sadImagesThatMakeYouThink = ['slonik.jpg', 'ruki.jpg', 'koteika.jpg', 'water.gif', 'doggo.jpg', '1.jpg', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png', '13.png']
+
+  // preload all images
+  sadImagesThatMakeYouThink.forEach((img) => {
+    new Image().src = img
+  })
 
   const div1 = document.createElement('div');
   div1.className = 'main';
@@ -77,12 +85,24 @@
 
   const img = document.createElement('img');
 
-  const rand = Math.floor(Math.random() * sadImages.length)
-  img.src = sadImages[rand]
+  let previousRand
+  const setRandomImage = () => {
+    const noRepeatImagesArray = previousRand !== undefined
+      ? [
+        ...sadImagesThatMakeYouThink.slice(0, previousRand),
+	    ...sadImagesThatMakeYouThink.slice(previousRand + 1, sadImagesThatMakeYouThink.length)
+      ]
+      : sadImagesThatMakeYouThink
+    const rand = Math.floor(Math.random() * noRepeatImagesArray.length)
+    img.src = noRepeatImagesArray[rand]
+    previousRand = rand >= previousRand ? rand + 1 : rand
+  }
+
+  setRandomImage()
 
   const btn = document.createElement('button');
   btn.addEventListener('click', function() {
-    window.location.reload();
+    setRandomImage()
   }, false);
   btn.textContent = 'Шатать';
 
