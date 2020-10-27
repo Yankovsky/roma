@@ -66,6 +66,11 @@
 
   const sadImagesThatMakeYouThink = ['slonik.jpg', 'ruki.jpg', 'koteika.jpg', 'water.gif', 'doggo.jpg', '1.jpg', '2.png', '3.png']
 
+  // preload all images
+  sadImagesThatMakeYouThink.forEach((img) => {
+    new Image().src = img
+  })
+
   const div1 = document.createElement('div');
   div1.className = 'main';
   const div2 = document.createElement('div');
