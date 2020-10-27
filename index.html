@@ -17,6 +17,7 @@
     button{
       border: none;
       color: white;
+      margin: 5px;
       padding: 14px 28px;
       cursor: pointer;
       background-color: #f44336;
@@ -38,6 +39,9 @@
     }
     .forBtn{
       padding: 5px;
+    }
+    .hidden {
+	    display: none;
     }
     .roma {
       padding: 5px;
@@ -61,38 +65,45 @@
 	</style>
 </head>
 <body>
+<div id="main" class="main forBtn">
+	<img src="kek.png" alt="roma" class="roma">
+	<span id="imgContainer">
+		<img src="good-boy.jpeg" alt="doggo" id="goodImg" class="hidden">
+	</span>
+</div>
 <script>
   console.log("%cRoma, we love you! 💖 TTTeam", "color: lightcoral; font-size: x-large")
 
   const sadImagesThatMakeYouThink = ['slonik.jpg', 'ruki.jpg', 'koteika.jpg', 'water.gif', 'doggo.jpg', '1.jpg', '2.png', '3.png']
 
-  // preload all images
-  sadImagesThatMakeYouThink.forEach((img) => {
-    new Image().src = img
+  const imgContainer = document.getElementById('imgContainer');
+
+  sadImagesThatMakeYouThink.forEach((imgUrl) => {
+    const img = document.createElement('img');
+    img.className = 'hidden sad'
+    imgContainer.prepend(img);
+    img.src = imgUrl
   })
 
-  const div1 = document.createElement('div');
-  div1.className = 'main';
-  const div2 = document.createElement('div');
-  div1.className = 'forBtn';
+  const allImagesInImgContainer = imgContainer.querySelectorAll('img')
+  const sadImagesInImgContainer = imgContainer.querySelectorAll('img.sad')
 
-  const roma = document.createElement('img');
-  roma.className = 'roma';
-  roma.src = 'kek.png';
-
-  const img = document.createElement('img');
+  const hideAllImages = () => {
+    allImagesInImgContainer.forEach(img => img.classList.add('hidden'))
+  }
 
   let previousRand
   const setRandomImage = () => {
-    const noRepeatImagesArray = previousRand !== undefined
-      ? [
-        ...sadImagesThatMakeYouThink.slice(0, previousRand),
-	    ...sadImagesThatMakeYouThink.slice(previousRand + 1, sadImagesThatMakeYouThink.length)
-      ]
-      : sadImagesThatMakeYouThink
-    const rand = Math.floor(Math.random() * noRepeatImagesArray.length)
-    img.src = noRepeatImagesArray[rand]
-    previousRand = rand >= previousRand ? rand + 1 : rand
+    const maxRand = previousRand === undefined
+      ? sadImagesThatMakeYouThink.length
+      : sadImagesThatMakeYouThink.length - 1
+    const rand = Math.floor(Math.random() * maxRand)
+    const noRepeatRand = rand >= previousRand ? rand + 1 : rand
+
+    hideAllImages()
+    sadImagesInImgContainer[noRepeatRand].classList.remove('hidden')
+    console.log(sadImagesInImgContainer[noRepeatRand].src)
+    previousRand = noRepeatRand
   }
 
   setRandomImage()
@@ -103,15 +114,17 @@
   }, false);
   btn.textContent = 'Шатать';
 
+  const goodImg = document.getElementById('goodImg')
   const btnCool = document.createElement('button');
   btnCool.addEventListener('click', function() {
-    img.src = 'good-boy.jpeg'
+    hideAllImages()
+    goodImg.classList.remove('hidden')
   }, false);
   btnCool.textContent = 'Рома хороший';
 
+  const div1 = document.getElementById('main');
+  const div2 = document.createElement('div');
 
-  div1.appendChild(roma);
-  div1.appendChild(img);
   div2.appendChild(btn);
   div2.appendChild(btnCool);
   document.body.appendChild(div1);
