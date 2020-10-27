@@ -64,7 +64,7 @@
 <script>
   console.log("%cRoma, we love you! 💖 TTTeam", "color: lightcoral; font-size: x-large")
 
-  const sadImagesThatMakeYouThink = ['./slonik.jpg', 'ruki.jpg', 'koteika.jpg', 'water.gif', 'doggo.jpg', '1.jpg', '2.png', '3.png']
+  const sadImagesThatMakeYouThink = ['slonik.jpg', 'ruki.jpg', 'koteika.jpg', 'water.gif', 'doggo.jpg', '1.jpg', '2.png', '3.png']
 
   const div1 = document.createElement('div');
   div1.className = 'main';
@@ -86,7 +86,6 @@
       ]
       : sadImagesThatMakeYouThink
     const rand = Math.floor(Math.random() * noRepeatImagesArray.length)
-    console.log(rand)
     img.src = noRepeatImagesArray[rand]
     previousRand = rand >= previousRand ? rand + 1 : rand
   }
