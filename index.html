@@ -62,7 +62,9 @@
 </head>
 <body>
 <script>
-  const sadImages = ['./slonik.jpg', 'ruki.jpg', 'koteika.jpg', 'water.gif', 'doggo.jpg', '1.jpg', '2.png', '3.png']
+  console.log("%cRoma, we love you! 💖 TTTeam", "color: lightcoral; font-size: x-large")
+
+  const sadImagesThatMakeYouThink = ['./slonik.jpg', 'ruki.jpg', 'koteika.jpg', 'water.gif', 'doggo.jpg', '1.jpg', '2.png', '3.png']
 
   const div1 = document.createElement('div');
   div1.className = 'main';
@@ -75,12 +77,16 @@
 
   const img = document.createElement('img');
 
-  const rand = Math.floor(Math.random() * sadImages.length)
-  img.src = sadImages[rand]
+  const setRandomImage = () => {
+    const rand = Math.floor(Math.random() * sadImagesThatMakeYouThink.length)
+    img.src = sadImagesThatMakeYouThink[rand]
+  }
+
+  setRandomImage()
 
   const btn = document.createElement('button');
   btn.addEventListener('click', function() {
-    window.location.reload();
+    setRandomImage()
   }, false);
   btn.textContent = 'Шатать';
 
